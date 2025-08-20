@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <header className="mb-8 flex items-center justify-between">
             <div>
               <Link href="/"><h1 className="text-3xl font-bold">✅ Next.js Todo</h1></Link>
-              <p className="text-gray-600">SQLite + API Routes + Auth</p>
+              <p className="text-gray-600">Upstash-Redis + API Routes + Auth</p>
             </div>
             <nav className="flex gap-3 text-sm">
               <Link className="btn-outline" href="/login">Log in</Link>
