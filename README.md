@@ -3,6 +3,7 @@
 A complete Next.js 14 App Router Todo app with email/password authentication, SQLite persistence, and Tailwind UI.
 
 ## Features
+
 - 🔐 Email/password auth with HTTP-only cookie sessions
 - 🗂️ Per-user Todos (CRUD: add, rename, toggle, delete)
 - 🧱 API routes under `/api/todos` & `/api/auth/*`
@@ -11,6 +12,7 @@ A complete Next.js 14 App Router Todo app with email/password authentication, SQ
 - 🧰 TypeScript + zod validation
 
 ## Getting Started
+
 ```bash
 npm install
 npm run dev
@@ -18,17 +20,20 @@ npm run dev
 ```
 
 ## Scripts
+
 - `dev` — start dev server
 - `build` — build for production
 - `start` — start production server
 - `postinstall` — ensures `data/` directory exists
 
 ## Security Notes
+
 - Cookies are HttpOnly and SameSite=Lax. For production over HTTPS, consider setting `secure: true` when setting the cookie.
 - Passwords are salted + hashed with `bcryptjs`.
 - For multi-instance deployments, switch to Postgres (Prisma) or NextAuth.js with an adapter.
 
 ## API
+
 - `POST /api/auth/signup` `{ email, password }`
 - `POST /api/auth/login` `{ email, password }`
 - `POST /api/auth/logout`

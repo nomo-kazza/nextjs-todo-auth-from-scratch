@@ -1,5 +1,4 @@
-
-import { Redis } from "@upstash/redis";
+import { Redis } from '@upstash/redis';
 
 export const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL!,
@@ -20,7 +19,10 @@ export async function listTodosByUser(userId: string): Promise<Todo[]> {
   return todos || [];
 }
 
-export async function createTodoForUser(userId: string, title: string): Promise<Todo> {
+export async function createTodoForUser(
+  userId: string,
+  title: string,
+): Promise<Todo> {
   const todo: Todo = {
     id: crypto.randomUUID(),
     title,
@@ -33,18 +35,29 @@ export async function createTodoForUser(userId: string, title: string): Promise<
   return todo;
 }
 
-export async function updateTodoForUser(userId: string, id: string, data: Partial<Pick<Todo, "title" | "completed">>): Promise<Todo | null> {
+export async function updateTodoForUser(
+  userId: string,
+  id: string,
+  data: Partial<Pick<Todo, 'title' | 'completed'>>,
+): Promise<Todo | null> {
   const todos = await listTodosByUser(userId);
   const idx = todos.findIndex((t) => t.id === id);
   if (idx === -1) return null;
-  const updated = { ...todos[idx], ...data, updatedAt: new Date().toISOString() };
+  const updated = {
+    ...todos[idx],
+    ...data,
+    updatedAt: new Date().toISOString(),
+  };
   todos[idx] = updated;
   await redis.del(`todos:${userId}`);
   await redis.rpush(`todos:${userId}`, ...todos);
   return updated;
 }
 
-export async function deleteTodoForUser(userId: string, id: string): Promise<boolean> {
+export async function deleteTodoForUser(
+  userId: string,
+  id: string,
+): Promise<boolean> {
   const todos = await listTodosByUser(userId);
   const filtered = todos.filter((t) => t.id !== id);
   await redis.del(`todos:${userId}`);
