@@ -1,6 +1,6 @@
 # Next.js Todo App (with Auth)
 
-A complete Next.js 14 App Router Todo app with email/password authentication, SQLite persistence, and Tailwind UI.
+A complete Next.js 14 App Router Todo app with email/password authentication, upstash redis persistence, and Tailwind UI.
 
 ## Features
 
@@ -17,7 +17,10 @@ A complete Next.js 14 App Router Todo app with email/password authentication, SQ
 npm install
 npm run dev
 # Open http://localhost:3000/signup to create an account
+
 ```
+
+[Depoyed to vercel version](https://nextjs-todo-auth-from-scratch-azyg.vercel.app/)
 
 ## Scripts
 
